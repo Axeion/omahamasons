@@ -96,9 +96,16 @@
       <div class="newsletter">
         <h3>Stay Connected</h3>
         <p>Sign up to receive our Trestle Board newsletter and updates from the lodge.</p>
-        <form class="newsletter-form" action="#" onsubmit="alert('To subscribe, please email Mizpah302sec@gmail.com'); return false;">
-          <input type="email" placeholder="Your email address" required>
-          <button type="submit" class="btn btn-accent">Subscribe</button>
+        <form class="newsletter-form" action="https://omahamasons.us20.list-manage.com/subscribe/post?u=60d3b40cfe7d3514e0cc9e4ee&amp;id=fd431a9ac5&amp;f_id=004576eef0" method="post" target="_blank" style="flex-direction:column;">
+          <input type="text" name="MMERGE9" placeholder="Your name" autocomplete="name">
+          <div style="display:flex; gap:10px;">
+            <input type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email">
+            <button type="submit" name="subscribe" class="btn btn-accent">Subscribe</button>
+          </div>
+          <!-- Mailchimp honeypot — do not remove -->
+          <div aria-hidden="true" style="position:absolute; left:-5000px;">
+            <input type="text" name="b_60d3b40cfe7d3514e0cc9e4ee_fd431a9ac5" tabindex="-1" value="">
+          </div>
         </form>
       </div>
     </div>
