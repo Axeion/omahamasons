@@ -30,7 +30,7 @@
           <li><a href="dues.html">Lodge Dues</a></li>
           <li><a href="club-1919.html">Club 1919</a></li>
           <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="https://www.paypal.com/donate" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
+          <li><a href="https://www.paypal.me/mizpah302" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
         </ul>
       </nav>
     </div>
