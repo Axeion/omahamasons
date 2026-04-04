@@ -368,6 +368,14 @@ img {
 .pillar-icon {
   font-size: 2.5rem;
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.pillar-icon img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 .pillar h3 {
