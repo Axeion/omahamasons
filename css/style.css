@@ -482,6 +482,25 @@ img {
   color: var(--text-light);
 }
 
+/* --- Blockquote --- */
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 15px 20px;
+  margin: 25px 0;
+  font-style: italic;
+  color: var(--text-light);
+  background: var(--bg-dark);
+  border-radius: 0 4px 4px 0;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
 /* --- Contact Form --- */
 .contact-grid {
   display: grid;

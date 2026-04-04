@@ -25,6 +25,7 @@
       <nav class="main-nav" id="mainNav">
         <ul>
           <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
           <li><a href="calendar.html">Calendar</a></li>
           <li><a href="scholarships.html">Scholarships &amp; Forms</a></li>
           <li><a href="dues.html">Lodge Dues</a></li>
