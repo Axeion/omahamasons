@@ -21,64 +21,70 @@ Mizpah Lodge embodies **Masonic tradition meets accessible community presence**.
 **Low-to-medium density** with deliberate breathing room. Navigation is compact; content sections are generous. Cards and info panels use internal padding to prevent the dark background from feeling oppressive.
 
 ### Visual Character
-- Deep navy/dark backgrounds (`#0d1b2a` range) as the dominant foundation
-- Warm gold (`#c9a84c`) as the singular brand accent — used for borders, highlights, active states, and key UI moments
-- Off-white/warm light text (`#e8e8e8`, `#d4c5a9`) for readability against dark surfaces
+- Deep navy backgrounds (`#0d1b26` range) as the dominant foundation
+- Warm gold (`#c8972e`) as the primary brand accent — used for borders, highlights, active states, and key UI moments
+- Blue (`#2a8fd4`) as a supporting functional color for primary action buttons and informational UI
+- Off-white/light text (`#dce8f2`) for readability against dark surfaces
 - Alegreya serif for display and headings — classical, scholarly weight
 - Roboto sans-serif for body, labels, and UI — clean counterbalance
-- Subtle gold dividers (`border-bottom: 1px solid rgba(201,168,76,0.3)`) used throughout
-- Cards use slight background lift (`rgba(255,255,255,0.06)`) over dark base
-- Minimal shadows — depth created through tonal shifts and border contrast
-- Border-radius: 5–8px — approachable but not playful
+- Cards use elevated dark blue surface (`#152d42`) over the page background
+- Depth created through box shadows and tonal shifts
+- Border-radius: 3–4px — sharp and structured, not playful
 
 ---
 
 ## 2. Color Palette & Roles
 
-### Core Foundation
+### CSS Custom Properties
 
-| Token | Hex / Value | Role |
-|-------|-------------|------|
-| `--bg-primary` | `#0d1b2a` | Page background (deep navy) |
-| `--bg-surface` | `#1a1a2e` | Cards, panels, elevated surfaces |
-| `--bg-surface-hover` | `rgba(255,255,255,0.09)` | Hovered inputs and interactive surfaces |
-| `--bg-alt` | `rgba(255,255,255,0.06)` | Subtle surface differentiation within cards |
-| `--text-primary` | `#e8e8e8` | Primary body text |
-| `--text-warm` | `#d4c5a9` | Warm secondary text, descriptions |
-| `--text-light` | `#aaaaaa` | Tertiary text, metadata, captions |
+```css
+:root {
+  /* Brand */
+  --primary:       #2a8fd4;   /* Blue — primary action buttons, informational UI */
+  --primary-dark:  #1a6fa8;   /* Blue hover/active state */
+  --primary-light: #4aa8e0;   /* Blue links */
+  --accent:        #c8972e;   /* Gold — borders, headings, active nav, highlights */
+  --accent-dark:   #a87824;   /* Gold dark variant */
+  --accent-light:  #ddb84a;   /* Gold hover/light variant */
 
-### Brand Colors
+  /* Text */
+  --text:          #dce8f2;   /* Primary body text */
+  --text-light:    #7a9ab5;   /* Secondary/muted text, captions, placeholders */
 
-| Token | Hex / Value | Role |
-|-------|-------------|------|
-| `--gold` | `#c9a84c` | Primary accent — borders, headings, active nav, labels |
-| `--gold-hover` | `#e0b956` | Gold hover state — buttons, links |
-| `--gold-subtle` | `rgba(201,168,76,0.15)` | Gold tint backgrounds (stepper buttons, tags) |
-| `--gold-border` | `rgba(201,168,76,0.35)` | Standard card/input borders |
-| `--gold-divider` | `rgba(201,168,76,0.3)` | Section dividers within cards |
-| `--gold-strong` | `rgba(201,168,76,0.5)` | Emphasized dividers, setup banners |
+  /* Backgrounds */
+  --bg:            #0d1b26;   /* Page background (deep navy) */
+  --bg-alt:        #091420;   /* Alternate section background (darker navy) */
+  --bg-card:       #152d42;   /* Cards, panels, elevated surfaces */
+  --bg-dark:       #070f17;   /* Deepest background — hero overlay, blockquotes */
+  --bg-footer:     #040a10;   /* Footer background */
 
-> **Note:** Gold (`#c9a84c`) is the ONLY accent color in the current palette. There is no secondary brand color defined. All interactive highlights, labels, borders, and UI moments use gold or a gold variant. Do not introduce blue, teal, purple, or other accent colors without an explicit design decision.
+  /* Utility */
+  --border:        rgba(255,255,255,0.1);    /* Default subtle border */
+  --shadow:        0 4px 20px rgba(0,0,0,0.5); /* Card/element shadow */
+}
+```
 
-### Payment Button Colors (contextual only)
+### Color Roles Summary
 
-| Token | Hex | Role |
-|-------|-----|------|
-| `--paypal-blue` | `#003087` | PayPal brand button background |
-| `--venmo-blue` | `#008CFF` | Venmo brand button background |
+| Color | Value | Usage |
+|-------|-------|-------|
+| Gold (`--accent`) | `#c8972e` | Headings, active nav, dividers, card top borders, badges |
+| Gold light (`--accent-light`) | `#ddb84a` | Hover states on gold elements |
+| Blue (`--primary`) | `#2a8fd4` | Primary `.btn-primary` buttons |
+| Blue dark (`--primary-dark`) | `#1a6fa8` | Button hover, meeting info background |
+| Blue light (`--primary-light`) | `#4aa8e0` | Body link color |
+| Text (`--text`) | `#dce8f2` | All primary text |
+| Text muted (`--text-light`) | `#7a9ab5` | Secondary text, captions, card body copy |
+| Card bg (`--bg-card`) | `#152d42` | Info cards, WM card, payment cards, newsletter |
+| Page bg (`--bg`) | `#0d1b26` | Page body |
+| Alt bg (`--bg-alt`) | `#091420` | `.section-alt` background |
+| Dark bg (`--bg-dark`) | `#070f17` | Hero overlay, blockquote background, deepest surfaces |
 
-These are third-party brand colors used only on payment CTAs. They are not part of the lodge palette.
+### Payment Brand Colors (contextual only)
 
-### Semantic Colors
-
-| Token | Hex / Value | Role |
-|-------|-------------|------|
-| `--success-bg` | `rgba(72,187,120,0.15)` | Form success state background |
-| `--success-border` | `rgba(72,187,120,0.5)` | Form success state border |
-| `--success-text` | `#68d391` | Success message text |
-| `--error-bg` | `rgba(245,101,101,0.12)` | Form error state background |
-| `--error-border` | `rgba(245,101,101,0.4)` | Form error state border |
-| `--error-text` | `#fc8181` | Error message text |
+Used only on payment CTAs. Not part of the lodge palette.
+- PayPal: `#003087`
+- Venmo: `#008CFF`
 
 ---
 
@@ -88,13 +94,13 @@ These are third-party brand colors used only on payment CTAs. They are not part 
 
 ```css
 /* Display & Headings */
---font-serif: 'Alegreya', Georgia, 'Times New Roman', serif;
+font-family: 'Alegreya', 'Georgia', serif;
 
 /* Body, UI, Labels */
---font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+font-family: 'Roboto', 'Segoe UI', sans-serif;
 ```
 
-Both loaded via Google Fonts:
+Loaded via Google Fonts:
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 ```
@@ -103,20 +109,19 @@ Both loaded via Google Fonts:
 
 | Element | Size | Weight | Font | Color |
 |---------|------|--------|------|-------|
-| Hero H1 | 2.8–3.2rem | 700 | Alegreya | `#e8e8e8` |
-| Page H1 | 2rem | 700 | Alegreya | `--gold` |
-| Section H2 | 1.5rem | 700 | Alegreya | `--gold` |
-| Card H3 | 1.1–1.5rem | 700 | Alegreya | `--gold` |
-| Nav links | 0.9rem | 400 | Roboto | `#e8e8e8` |
-| Body | 0.95–1rem | 400 | Roboto | `#e8e8e8` |
-| Labels (form) | 0.8rem | 500 | Roboto | `--gold` |
+| Hero H1 | 3rem (2.2rem mobile) | 700 | Alegreya | `#fff` |
+| Page H1 (`.page-header`) | 2.4rem | 700 | Alegreya | `#fff` |
+| Page subtitle | 1.05rem | 400 | Alegreya italic | `--accent` |
+| Section H2 (`.section-header`) | 2rem | 700 | Alegreya | `--accent` |
+| Card H3 | 1.1–1.4rem | 700 | Alegreya | `--accent` |
+| Nav links | 0.9rem | 500 | Roboto uppercase | `--text` |
+| Body | 0.95–1rem | 400 | Roboto | `--text` |
+| Labels (form) | 0.8rem | 500 | Roboto uppercase | `--text-light` |
 | Small/caption | 0.85–0.9rem | 400 | Roboto | `--text-light` |
-| Button | 0.95–1rem | 700 | Roboto | `#111` on gold |
+| Button | 0.9rem | 600 | Roboto uppercase | varies by type |
 
 ### Typography Philosophy
-Alegreya is used exclusively for headings and display text — it carries the historical, fraternal weight of the lodge. Roboto handles all functional UI: navigation, body copy, form labels, and buttons. **Never use Alegreya for UI elements (buttons, labels, inputs).** Never use Roboto for section or card headings. The contrast between the two is intentional and central to the design identity.
-
-Headings in gold on dark backgrounds are a signature pattern. Labels above form fields are uppercase, 0.8rem, letter-spaced (~0.06em), in gold — a recurring motif across the site.
+Alegreya is used exclusively for headings and display text — it carries the historical, fraternal weight of the lodge. Roboto handles all functional UI: navigation, body copy, form labels, and buttons. **Never use Alegreya for UI elements (buttons, labels, inputs). Never use Roboto for section or card headings.**
 
 ---
 
@@ -125,194 +130,228 @@ Headings in gold on dark backgrounds are a signature pattern. Labels above form 
 ### Navigation Header
 
 ```
-Background: dark navy (matches --bg-primary)
-Logo: left-aligned image (images/header_miz.png)
-Nav links: Roboto 0.9rem, #e8e8e8, uppercase or mixed case
-Active link: class="active", color --gold
-Donate button: class="btn-donate", gold border + text, transparent bg
+Background: --bg-dark (#070f17)
+Border-bottom: 3px solid --accent (gold)
+Logo: left-aligned image (images/header_miz.png), height 50px
+Nav links: Roboto 0.9rem 500, --text, uppercase, letter-spacing 0.5px
+Active/hover link: color --accent, background rgba(255,255,255,0.05)
+Donate button: solid gold fill (#c8972e), dark text, border-radius 3px
+Hamburger spans: background --accent (gold)
 Mobile: hamburger toggle (.nav-toggle), nav slides in with class="open"
-Dropdown: .has-dropdown > .dropdown, shown on hover (desktop) or tap (mobile)
 ```
+
+Shared via `js/header.js` — injected as first element in `<body>`. Active nav state set dynamically by URL match — **never hardcode `class="active"` in page files**.
 
 ### Page Header Banner
 
 Used on all inner pages (not homepage):
 ```
-Background: slightly lighter than page bg, or dark with subtle gradient
-H1: Alegreya, ~2rem, gold or white
-Subtitle p: Roboto, 0.95rem, --text-warm or --text-light
-Padding: generous vertical (40–60px)
+Background: linear-gradient(135deg, --bg-dark 0%, #0d2d42 100%)
+Border-bottom: 3px solid --accent
+H1: Alegreya 2.4rem, #fff
+Subtitle p: Alegreya italic 1.05rem, --accent
+Padding: 60px vertical
 ```
 
-### Cards / Info Cards (.info-card)
+### Cards / Info Cards (`.info-card`)
 
 ```css
 .info-card {
-  background: var(--bg-surface);       /* #1a1a2e */
-  border: 1px solid var(--gold-border); /* rgba(201,168,76,0.35) */
-  border-radius: 8px;
-  padding: 32px;
+  background: var(--bg-card);       /* #152d42 */
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  padding: 30px;
+  margin-bottom: 20px;
 }
 
 .info-card h3 {
   font-family: 'Alegreya', serif;
-  color: var(--gold);
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--gold-divider);
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);  /* subtle white border */
+}
+```
+
+### Pillar Cards (`.pillar`) — three-column feature grid
+
+```css
+.pillar {
+  text-align: center;
+  padding: 35px 30px;
+  background: var(--bg-card);
+  border-radius: 4px;
+  border-top: 3px solid var(--accent);
+  box-shadow: var(--shadow);
+}
+.pillar h3 { color: var(--accent); font-size: 1.4rem; }
+.pillar p  { color: var(--text-light); font-size: 0.95rem; }
+.pillar-icon img {
+  width: 64px; height: 64px;
+  filter: brightness(0) invert(1);  /* force white */
 }
 ```
 
 ### Buttons
 
-#### Primary (Gold fill)
+#### Primary (Blue fill)
 ```css
 .btn-primary {
-  background: var(--gold);       /* #c9a84c */
-  color: #111;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  padding: 12–14px 20–24px;
-  border-radius: 6px;
-  border: none;
-  transition: background 0.2s, transform 0.15s;
+  background: var(--primary);   /* #2a8fd4 */
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-.btn-primary:hover {
-  background: var(--gold-hover); /* #e0b956 */
-  transform: translateY(-1px);
-}
+.btn-primary:hover { background: var(--primary-dark); }
 ```
 
-#### Outline (Ghost gold)
+#### Accent (Gold fill)
+```css
+.btn-accent {
+  background: var(--accent);    /* #c8972e */
+  color: #0d1b26;
+  border-radius: 3px;
+}
+.btn-accent:hover { background: var(--accent-light); }
+```
+
+#### Outline (Ghost)
 ```css
 .btn-outline {
   background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: 6px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  color: #fff;
+  border: 2px solid var(--accent);
+  border-radius: 3px;
 }
 .btn-outline:hover {
-  background: var(--gold-subtle);
+  background: var(--accent);
+  color: #0d1b26;
 }
 ```
 
-#### Donate (nav button)
+#### Donate (nav)
 ```css
 .btn-donate {
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  border-radius: 4px;
-  padding: 6px 14px;
-  font-size: 0.85rem;
+  background: var(--accent);
+  color: #0d1b26 !important;
+  border-radius: 3px;
+  padding: 10px 18px;
+  font-weight: 700;
 }
-.btn-donate:hover {
-  background: var(--gold);
-  color: #111;
-}
+.btn-donate:hover { background: var(--accent-light); }
 ```
 
 ### Form Inputs
 
 ```css
-input, select, textarea {
+.form-group input,
+.form-group textarea,
+.form-group select {
   background: rgba(255,255,255,0.06);
-  border: 1px solid var(--gold-border);
-  border-radius: 5px;
-  color: #e8e8e8;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text);
   font-family: 'Roboto', sans-serif;
-  padding: 11px 14px;
+  padding: 10px 14px;
 }
-input:focus, select:focus, textarea:focus {
-  border-color: var(--gold);
-  background: rgba(255,255,255,0.09);
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200,151,46,0.15);
   outline: none;
 }
 ```
 
 Form labels:
 ```css
-label {
+.form-group label {
   font-family: 'Roboto', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--gold);
+  color: var(--text-light);
 }
 ```
 
 ### Dividers
 
-The standard decorative divider used beneath section headings:
 ```css
-.divider {
+.section-header .divider {
   width: 60px;
-  height: 2px;
-  background: var(--gold);
-  margin: 12px auto;
+  height: 3px;
+  background: var(--accent);
+  margin: 10px auto;
 }
 ```
 
-### Tables (.dues-table)
-
-```css
-thead th {
-  background: rgba(201,168,76,0.15);
-  color: var(--gold);
-  font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8rem;
-}
-tbody td {
-  border-bottom: 1px solid rgba(201,168,76,0.15);
-  color: #e8e8e8;
-}
-tr.total-row td {
-  color: var(--gold);
-  font-weight: 700;
-  border-top: 1px solid var(--gold-border);
-}
-```
-
-### Blockquotes / Pull Quotes
+### Blockquotes
 
 Used on the About page for historical quotes:
 ```css
 blockquote {
-  border-left: 3px solid var(--gold);
-  padding-left: 20px;
-  font-family: 'Alegreya', serif;
+  border-left: 4px solid var(--accent);
+  padding: 15px 20px;
+  margin: 25px 0;
   font-style: italic;
-  color: var(--text-warm);
-  margin: 24px 0;
+  color: var(--text-light);
+  background: var(--bg-dark);
+  border-radius: 0 4px 4px 0;
+}
+blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--accent);
 }
 ```
 
-### Status Messages (forms)
+### Tables (`.dues-table`)
 
 ```css
-.form-status {
-  display: none;              /* hidden by default — shown via JS only */
-  padding: 14px 18px;
-  border-radius: 6px;
-  margin-top: 16px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.95rem;
+.dues-table th {
+  background: var(--primary-dark);  /* blue */
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.82rem;
 }
-/* JS sets display:block when shown — do NOT use display:block in CSS modifiers */
-.form-status.success {
-  background: rgba(72,187,120,0.15);
-  border: 1px solid rgba(72,187,120,0.5);
-  color: #68d391;
+.dues-table td {
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
-.form-status.error {
-  background: rgba(245,101,101,0.12);
-  border: 1px solid rgba(245,101,101,0.4);
-  color: #fc8181;
+.dues-table .total-row td {
+  color: var(--accent);
+  font-weight: 700;
+  background: rgba(200,151,46,0.1);
+}
+```
+
+### Newsletter Block
+
+```css
+.newsletter {
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  padding: 40px;
+  border-radius: 4px;
+  text-align: center;
+}
+```
+
+### Benediction (footer pull quote)
+
+```css
+.benediction {
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  border-left: 3px solid var(--accent);
+  background: rgba(200,151,46,0.05);
+  border-radius: 0 3px 3px 0;
 }
 ```
 
@@ -323,10 +362,10 @@ blockquote {
 ### Page Structure
 
 ```
-<header class="site-header">        ← injected via header.html + js/header-loader.js
-<div class="page-header">           ← inner page banner (not on homepage)
-<section class="content-page">      ← main content wrapper
-  <div class="container">           ← max-width constrained, centered
+<header class="site-header">     ← injected via js/header.js (first element in <body>)
+<div class="page-header">        ← inner page banner (not on homepage)
+<section class="content-page">   ← main content wrapper for inner pages
+  <div class="container">        ← max-width constrained, centered
 <footer class="site-footer">
 ```
 
@@ -334,91 +373,90 @@ blockquote {
 
 ```css
 .container {
-  max-width: 1100px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
 }
 ```
 
-### Spacing Scale (approximate)
+Inner page containers often constrained further inline: `style="max-width:1000px;"` or `style="max-width:900px;"`.
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | 8px | Tight gaps, inline elements |
-| `--space-sm` | 12–16px | Between related elements |
-| `--space-md` | 20–24px | Card padding, section gaps |
-| `--space-lg` | 32px | Card padding (desktop) |
-| `--space-xl` | 40–48px | Between major sections |
-| `--space-2xl` | 60–80px | Hero sections, page headers |
+### Section Spacing
+
+```css
+.section        { padding: 70px 0; }
+.content-page   { padding: 40px 0; }
+.section-alt    { background: var(--bg-alt); }   /* #091420 */
+.section-dark   { background: var(--bg-dark); }  /* #070f17 */
+```
 
 ### Grid Patterns
 
-Two-column grid (primary layout for RSVP, contact, welcome section):
+Three-column (pillars, payment methods):
 ```css
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-@media (max-width: 768px) {
-  .two-col { grid-template-columns: 1fr; gap: 24px; }
-}
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20–30px;
+/* collapses to 1fr at 768px */
 ```
 
-Payment/feature cards (three-up):
+Two-column (welcome, contact, scholarships):
 ```css
-.three-col {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-@media (max-width: 768px) {
-  .three-col { grid-template-columns: 1fr; }
-}
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 40px;
+/* collapses to 1fr at 768px */
+```
+
+Footer:
+```css
+grid-template-columns: 2fr 1fr 1fr;
 ```
 
 ### Breakpoints
 
 | Name | Value | Behavior |
 |------|-------|----------|
-| Mobile | `≤ 768px` | Single column, hamburger nav |
-| Tablet | `769px–1024px` | Transitional |
-| Desktop | `≥ 1024px` | Full multi-column layouts |
+| Mobile | `≤ 768px` | Single column, hamburger nav, stacked grids |
+| Desktop | `> 768px` | Full multi-column layouts |
 
 ---
 
 ## 6. Shared Infrastructure
 
-### Header Include System
+### Header System
 
-The site uses a JS-fetched shared header to avoid duplicating nav across pages:
+All pages use a shared header injected via JavaScript:
 
 ```
-header.html          ← single source of truth for nav markup
-js/header-loader.js  ← fetches header.html, injects it, sets active link, wires mobile nav
+js/header.js  ← single source of truth for nav markup and active-link logic
 ```
 
 Every page body opens with:
 ```html
-<div id="site-header"></div>
+<script src="js/header.js"></script>
 ```
+placed as the **first element inside `<body>`**. The script uses `document.currentScript.insertAdjacentHTML('beforebegin', headerHTML)` to inject the header synchronously before the script tag.
 
-And closes with:
+Active nav state is set dynamically by matching `window.location.pathname` — **never hardcode `class="active"` in page files**.
+
+### Copyright Year
+
+All footers use:
 ```html
-<script src="js/header-loader.js"></script>
+<script>document.write(new Date().getFullYear())</script>
 ```
+Never hardcode a year.
 
-Active nav state is set dynamically by matching `window.location.pathname` to link `href` — **never hardcode `class="active"` in page files**.
+### Contact Form
 
-### Data Collection
+`contact.html` submits to Formspree (`https://formspree.io/f/xldrdgjd`) via AJAX with `Accept: application/json`. On success, `form.reset()` is called and a success message is shown. Never full-page redirect.
 
-RSVP form (`rsvp.html`) submits to Google Apps Script:
-```
-https://script.google.com/macros/s/AKfycbyw_.../exec
-```
-Uses `fetch()` with `mode: 'no-cors'`. Responses land in a Google Sheet.
+### Newsletter
 
-Payment links:
+Mailchimp embed in `index.html`. POST to Mailchimp list-manage URL. Includes honeypot field (`b_...`). Opens in `target="_blank"`.
+
+### Payment Links
 - PayPal: `https://www.paypal.me/mizpah302`
 - Venmo: `https://www.venmo.com/u/mizpah302`
 
@@ -444,49 +482,60 @@ Use this block when prompting Claude Code to build or modify pages for this site
 
 ## Identity
 Masonic lodge, Omaha Nebraska, founded 1919.
-Dark navy aesthetic, gold accents, serif/sans type pairing.
+Dark navy aesthetic, gold + blue accents, serif/sans type pairing.
 
 ## Colors
-Background: #0d1b2a (page) / #1a1a2e (cards/surfaces)
-Gold accent: #c9a84c (borders, headings, labels, active states)
-Gold hover: #e0b956
-Gold border: rgba(201,168,76,0.35)
-Gold divider: rgba(201,168,76,0.3)
-Text primary: #e8e8e8
-Text secondary: #d4c5a9
-Text tertiary: #aaaaaa
+Page background:  #0d1b26  (--bg)
+Alt background:   #091420  (--bg-alt)
+Card background:  #152d42  (--bg-card)
+Deep background:  #070f17  (--bg-dark)
+Footer:           #040a10  (--bg-footer)
+Gold accent:      #c8972e  (--accent) — headings, borders, active states, dividers
+Gold light:       #ddb84a  (--accent-light) — gold hover
+Blue primary:     #2a8fd4  (--primary) — action buttons
+Blue dark:        #1a6fa8  (--primary-dark) — button hover, meeting info bg
+Blue light:       #4aa8e0  (--primary-light) — body links
+Text primary:     #dce8f2  (--text)
+Text muted:       #7a9ab5  (--text-light)
+Border:           rgba(255,255,255,0.1)  (--border)
+Shadow:           0 4px 20px rgba(0,0,0,0.5)  (--shadow)
 
 ## Typography
-Headings: Alegreya serif, color --gold or #e8e8e8
-Body/UI: Roboto sans-serif, color #e8e8e8
-Form labels: Roboto 0.8rem, 500 weight, uppercase, letter-spacing 0.06em, color --gold
+Headings: Alegreya serif — color --accent or #fff depending on context
+Body/UI:  Roboto sans-serif — color --text (#dce8f2)
+Form labels: Roboto 0.8rem, 500 weight, uppercase, letter-spacing 0.06em, color --text-light
 Never use Alegreya for buttons or form labels.
-Never use Roboto for section headings.
+Never use Roboto for section headings or card titles.
 
 ## Components
-Cards: bg #1a1a2e, border rgba(201,168,76,0.35), border-radius 8px, padding 32px
-Primary button: bg #c9a84c, color #111, Roboto bold, hover #e0b956
-Inputs: bg rgba(255,255,255,0.06), border rgba(201,168,76,0.35), focus border #c9a84c
-Blockquotes: border-left 3px solid #c9a84c, Alegreya italic
-Status messages: hidden by default (display:none), shown via JS (display:block) — never set display:block in CSS modifiers
+Cards:          bg #152d42, border-radius 4px, box-shadow, padding 30px
+Pillar cards:   same as cards + border-top 3px solid --accent
+Primary button: bg #2a8fd4 (blue), color #fff, border-radius 3px
+Accent button:  bg #c8972e (gold), color #0d1b26, border-radius 3px
+Outline button: transparent, border 2px solid --accent, color #fff
+Inputs:         bg rgba(255,255,255,0.06), border rgba(255,255,255,0.1), focus border --accent
+Blockquotes:    border-left 4px solid --accent, bg --bg-dark, color --text-light, italic
+Divider:        60px wide, 3px tall, background --accent
 
 ## Shared Header
-All pages use <div id="site-header"></div> + <script src="js/header-loader.js"></script>
+js/header.js injected as first element in <body>.
 Never hardcode the <header> block in page files.
-Never hardcode class="active" on nav links — the loader sets this dynamically.
+Never hardcode class="active" on nav links — set dynamically by URL match.
 
 ## Fonts (Google Fonts)
 Alegreya: ital,wght@0,400;0,700;1,400
 Roboto: wght@300;400;500;700
 
 ## Layout
-Container: max-width 1100px, centered, padding 0 24px
+Container: max-width 1140px, centered, padding 0 20px
 Mobile breakpoint: 768px (single column, hamburger nav)
-Primary grid: 1fr 1fr, gap 40px, collapses to 1fr at 768px
+Three-col grid: repeat(3, 1fr), gap 20–30px, collapses to 1fr at 768px
+Two-col grid: 1fr 1fr, gap 40px, collapses to 1fr at 768px
 
 ## Domain
 mizpahomaha.com (GitHub Pages, custom domain)
 Repo: github.com/Axeion/omahamasons
+Branch: claude/bold-dark-theme
 ```
 
 ---
@@ -495,15 +544,14 @@ Repo: github.com/Axeion/omahamasons
 
 | File | Nav Label | Purpose |
 |------|-----------|---------|
-| `index.html` | Home | Hero, pillars, WM message, what is Freemasonry, appendent bodies |
-| `about.html` | About | Lodge history, MWB Futcher legacy, centennial, community partnerships |
-| `calendar.html` | Calendar | Google Calendar embed + Trestle Board link |
-| `trestle-board.html` | *(dropdown)* | Newsletter archive |
+| `index.html` | Home | Hero, pillars, WM message, what is Freemasonry, newsletter |
+| `about.html` | About Us | Lodge history, MWB Futcher legacy, centennial, community partnerships |
+| `calendar.html` | Calendar | Google Calendar embed |
 | `scholarships.html` | Membership | Petition for initiation + scholarship applications |
-| `dues.html` | Lodge Dues | Annual dues breakdown + payment methods |
-| `club-1919.html` | Club 1919 | Voluntary $19.19/mo charitable giving program |
-| `contact.html` | Contact Us | Contact form (Formspree) + lodge info + map |
-| `shop.html` | Shop | Etsy storefront link |
-| `rsvp.html` | Dinner RSVP | Monthly business meeting dinner RSVP + PayPal/Venmo payment |
-| `header.html` | *(include)* | Shared nav — injected by header-loader.js |
-| `js/header-loader.js` | *(script)* | Fetches header.html, sets active state, wires mobile nav |
+| `dues.html` | Lodge Dues | Annual dues breakdown, payment methods, Club 1919 section |
+| `contact.html` | Contact Us | Contact form (Formspree AJAX) + lodge info + map |
+| `rsvp.html` | *(unlisted)* | Monthly business meeting dinner RSVP |
+| `trestle-board.html` | *(unlisted)* | Newsletter archive (not linked from nav) |
+| `shop.html` | *(unlisted)* | Etsy storefront link |
+| `club-1919.html` | *(unlisted)* | Legacy page — content moved to dues.html |
+| `js/header.js` | *(script)* | Shared nav — injected into all pages |
