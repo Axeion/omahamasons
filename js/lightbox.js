@@ -28,7 +28,7 @@
     },
     {
       src: 'images/lightbox/futcherdedication.jpg',
-      caption: 'Futcher Dedication Ceremony',
+      caption: 'MW John Futcher & MW Harold Hultman dedicate the new building in 1975.',
     },
     {
       src: 'images/lightbox/buildingexterior.jpg',
