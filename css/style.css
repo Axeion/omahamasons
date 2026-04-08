@@ -365,8 +365,8 @@ img {
 
 .section-header p {
     color: var(--text-light);
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 975px;
+    margin: 0px 25px;
 }
 
 /* --- Pillars (Three Columns) --- */
@@ -443,9 +443,9 @@ img {
     margin-top: 20px;
 }
 
-.meeting-info h3 {
+.meeting-info h2 {
     color: var(--accent);
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     margin-bottom: 5px;
 }
 
@@ -463,9 +463,10 @@ img {
     border-top: 4px solid var(--accent);
 }
 
-.wm-card h3 {
-    font-size: 1.3rem;
+.wm-card h2 {
+    font-size: 1.7rem;
     margin-bottom: 5px;
+    color: var(--accent-dark);
 }
 
 .wm-card .wm-title {
@@ -476,7 +477,7 @@ img {
 
 .wm-card p {
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
 }
 
 /* --- Info Cards --- */
