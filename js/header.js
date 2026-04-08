@@ -28,7 +28,7 @@
           <li><a href="about.html">About Us</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="calendar.html">Calendar</a></li>
-          <li><a href="scholarships.html">Membership</a></li>
+          <li><a href="membership.html">Membership</a></li>
           <li><a href="dues.html">Lodge Dues</a></li>
           <li><a href="contact.html">Contact Us</a></li>
           <li><a href="https://www.paypal.me/mizpah302" target="_blank" rel="noopener" class="btn-donate">Donate</a></li>
@@ -38,34 +38,34 @@
   </header>`;
 
   // Inject the header HTML immediately before this script tag
-  document.currentScript.insertAdjacentHTML('beforebegin', headerHTML);
+  document.currentScript.insertAdjacentHTML("beforebegin", headerHTML);
 
   // Highlight the nav link matching the current page
-  var page = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.main-nav a[href]').forEach(function (link) {
-    var href = link.getAttribute('href');
-    if (href === page || (page === '' && href === 'index.html')) {
-      link.classList.add('active');
+  var page = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".main-nav a[href]").forEach(function (link) {
+    var href = link.getAttribute("href");
+    if (href === page || (page === "" && href === "index.html")) {
+      link.classList.add("active");
       // If this link is inside a dropdown, also mark the parent anchor active
-      var dropdown = link.closest('.has-dropdown');
+      var dropdown = link.closest(".has-dropdown");
       if (dropdown) {
-        var parentLink = dropdown.querySelector(':scope > a');
-        if (parentLink) parentLink.classList.add('active');
+        var parentLink = dropdown.querySelector(":scope > a");
+        if (parentLink) parentLink.classList.add("active");
       }
     }
   });
 
   // Mobile hamburger toggle
   window.toggleNav = function () {
-    document.getElementById('mainNav').classList.toggle('open');
+    document.getElementById("mainNav").classList.toggle("open");
   };
 
   // Mobile dropdown toggle — prevent navigation on small screens, toggle instead
-  document.querySelectorAll('.has-dropdown > a').forEach(function (link) {
-    link.addEventListener('click', function (e) {
+  document.querySelectorAll(".has-dropdown > a").forEach(function (link) {
+    link.addEventListener("click", function (e) {
       if (window.innerWidth <= 768) {
         e.preventDefault();
-        this.parentElement.classList.toggle('open');
+        this.parentElement.classList.toggle("open");
       }
     });
   });
