@@ -1210,6 +1210,14 @@ img.lb-image:hover {
   opacity: 1;
 }
 
+/* --- Two-column content grid --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
     .nav-toggle {
@@ -1285,5 +1293,9 @@ img.lb-image:hover {
 
     .newsletter-form {
         flex-direction: column;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
     }
 }
