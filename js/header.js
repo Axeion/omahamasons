@@ -26,6 +26,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="calendar.html">Calendar</a></li>
           <li><a href="scholarships.html">Membership</a></li>
           <li><a href="dues.html">Lodge Dues</a></li>
