@@ -969,6 +969,17 @@ blockquote cite {
   border: none;
 }
 
+/* --- Clickable inline images (.lb-image) --- */
+img.lb-image {
+  cursor: zoom-in;
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+
+img.lb-image:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.55);
+}
+
 /* --- Home Slideshow --- */
 .home-slideshow {
   position: relative;
