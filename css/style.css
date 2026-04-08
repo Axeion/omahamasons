@@ -14,6 +14,7 @@
 :root {
     --primary: #2a8fd4;
     --primary-dark: #1a6fa8;
+    --primary-extradark: #10496e;
     --primary-light: #4aa8e0;
     --accent: #c8972e;
     --accent-dark: #a87824;
@@ -433,8 +434,8 @@ img {
 }
 
 .meeting-info {
-    background: var(--primary-dark);
-    border: 1px solid var(--primary);
+    background: var(--primary-extradark);
+    border: 1px solid var(--primary-dark);
     color: #fff;
     padding: 20px;
     border-radius: 4px;
@@ -497,11 +498,11 @@ img {
 
 /* --- What is Freemasonry --- */
 .freemasonry-section {
-    text-align: center;
+    text-align: left;
 }
 
 .freemasonry-section p {
-    max-width: 700px;
+    max-width: 1000px;
     margin: 0 auto 20px;
     color: var(--text-light);
 }
