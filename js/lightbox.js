@@ -35,8 +35,24 @@
       caption: 'Mizpah Lodge — 1124 S. 48th Street, Omaha',
     },
     {
-      src: 'images/lightbox/prateek-katyal-_YzGQvASeMk-unsplash.jpg',
-      caption: 'Brotherhood',
+      src: 'images/lightbox/fb_bluffcity.jpg',
+      caption: 'Fb Bluffcity',
+    },
+    {
+      src: 'images/lightbox/fb_eastergroup.jpg',
+      caption: 'Fb Eastergroup',
+    },
+    {
+      src: 'images/lightbox/fbgroup.jpg',
+      caption: 'Fbgroup',
+    },
+    {
+      src: 'images/lightbox/fbgrow.jpg',
+      caption: 'Fbgrow',
+    },
+    {
+      src: 'images/lightbox/patrick&ericcoin.jpg',
+      caption: 'Patrick&Ericcoin',
     },
   ];
 
