@@ -36,23 +36,23 @@
     },
     {
       src: 'images/lightbox/fb_bluffcity.jpg',
-      caption: 'Fb Bluffcity',
+      caption: 'Mizpah Visits Bluff City Lodge in Iowa',
     },
     {
       src: 'images/lightbox/fb_eastergroup.jpg',
-      caption: 'Fb Eastergroup',
+      caption: 'Mizpah Partners with Morton Meadows for a great Easter egg hunt!',
     },
     {
       src: 'images/lightbox/fbgroup.jpg',
-      caption: 'Fbgroup',
+      caption: 'Mizpah celebrates the visit of a Brother from Portland, Oregon',
     },
     {
       src: 'images/lightbox/fbgrow.jpg',
-      caption: 'Fbgrow',
+      caption: 'Mizpah members & visitors discuss their feelings at our Monthly Grow night',
     },
     {
       src: 'images/lightbox/patrick&ericcoin.jpg',
-      caption: 'Patrick&Ericcoin',
+      caption: 'Grand Custodian Eric presents W.B. Patrick with his MM proficency coin.',
     },
   ];
 
