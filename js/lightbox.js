@@ -8,8 +8,10 @@
  *   - Inline page images (.lb-image) that open in the lightbox on click
  *     without rotating — useful for photo-illustrated content pages
  *
- * To add new gallery images: drop the file into images/lightbox/ and add an
- * entry to GALLERY_IMAGES below.
+ * To add new gallery images: drop the file into images/lightbox/ and push
+ * to main. The GitHub Action will detect the new file, add it to
+ * images/lightbox/manifest.json with an auto-generated caption, and update
+ * GALLERY_IMAGES below automatically. Edit manifest.json to customise captions.
  *
  * To make any inline <img> pop out: add class="lb-image" to it and load
  * this script on that page.
