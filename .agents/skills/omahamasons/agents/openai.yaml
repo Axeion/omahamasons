@@ -1,0 +1,6 @@
+interface:
+  display_name: "Omahamasons"
+  short_description: "Repo-specific patterns and workflows for omahamasons"
+  default_prompt: "Use the omahamasons repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
