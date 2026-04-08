@@ -15,6 +15,10 @@ on:
       - 'images/lightbox/*.JPG'
       - 'images/lightbox/*.JPEG'
       - 'images/lightbox/*.PNG'
+      # Also trigger when captions are edited directly in the manifest.
+      # GitHub won't re-trigger this workflow from the bot's own commits,
+      # so there is no infinite loop risk.
+      - 'images/lightbox/manifest.json'
 
 jobs:
   update-gallery:
