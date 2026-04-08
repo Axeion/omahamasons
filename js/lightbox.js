@@ -4,10 +4,15 @@
  * Provides:
  *   - Home page slideshow (#home-slideshow) that auto-rotates every 15 s
  *   - Gallery grid (#gallery-grid) with thumbnail tiles
- *   - Full-screen lightbox overlay for both
+ *   - Full-screen lightbox overlay for both of the above
+ *   - Inline page images (.lb-image) that open in the lightbox on click
+ *     without rotating — useful for photo-illustrated content pages
  *
- * To add new images: drop the file into images/lightbox/ and add an entry
- * to GALLERY_IMAGES below.
+ * To add new gallery images: drop the file into images/lightbox/ and add an
+ * entry to GALLERY_IMAGES below.
+ *
+ * To make any inline <img> pop out: add class="lb-image" to it and load
+ * this script on that page.
  */
 (function () {
   var GALLERY_IMAGES = [
@@ -33,10 +38,12 @@
     },
   ];
 
-  /* ── Lightbox overlay ──────────────────────────────────────── */
-  var lbIndex = 0;
-  var overlay, lbImg, lbCaption;
+  /* ── Shared lightbox state ─────────────────────────────────── */
+  var currentSet = [];
+  var lbIndex    = 0;
+  var overlay, lbImg, lbCaption, lbPrev, lbNext;
 
+  /* ── Lightbox overlay ──────────────────────────────────────── */
   function createOverlay() {
     overlay = document.createElement('div');
     overlay.className = 'lb-overlay';
@@ -54,33 +61,50 @@
 
     lbImg     = overlay.querySelector('.lb-img');
     lbCaption = overlay.querySelector('.lb-caption');
+    lbPrev    = overlay.querySelector('.lb-prev');
+    lbNext    = overlay.querySelector('.lb-next');
 
     overlay.querySelector('.lb-close').addEventListener('click', closeLb);
-    overlay.querySelector('.lb-prev').addEventListener('click', function () {
-      showLb(lbIndex - 1);
-    });
-    overlay.querySelector('.lb-next').addEventListener('click', function () {
-      showLb(lbIndex + 1);
-    });
+    lbPrev.addEventListener('click', function () { navigateLb(-1); });
+    lbNext.addEventListener('click', function () { navigateLb(1); });
     overlay.addEventListener('click', function (e) {
       if (e.target === overlay) closeLb();
     });
     document.addEventListener('keydown', function (e) {
       if (!overlay.classList.contains('lb-open')) return;
-      if (e.key === 'Escape')      closeLb();
-      if (e.key === 'ArrowLeft')   showLb(lbIndex - 1);
-      if (e.key === 'ArrowRight')  showLb(lbIndex + 1);
+      if (e.key === 'Escape')     closeLb();
+      if (e.key === 'ArrowLeft')  navigateLb(-1);
+      if (e.key === 'ArrowRight') navigateLb(1);
     });
   }
 
-  function showLb(index) {
-    var n = GALLERY_IMAGES.length;
+  /**
+   * Open the lightbox with a given image set and starting index.
+   * Pass showNav = false to hide prev/next arrows (single-image pop-out).
+   */
+  function openLb(imageSet, index) {
+    currentSet = imageSet;
+    var n = currentSet.length;
     lbIndex = ((index % n) + n) % n;
-    lbImg.src       = GALLERY_IMAGES[lbIndex].src;
-    lbImg.alt       = GALLERY_IMAGES[lbIndex].caption;
-    lbCaption.textContent = GALLERY_IMAGES[lbIndex].caption;
+    updateLbDisplay();
+    // Hide nav arrows when there is only one image in the set
+    var multi = n > 1;
+    lbPrev.style.display = multi ? '' : 'none';
+    lbNext.style.display = multi ? '' : 'none';
     overlay.classList.add('lb-open');
     document.body.style.overflow = 'hidden';
+  }
+
+  function navigateLb(dir) {
+    var n = currentSet.length;
+    lbIndex = ((lbIndex + dir) % n + n) % n;
+    updateLbDisplay();
+  }
+
+  function updateLbDisplay() {
+    lbImg.src             = currentSet[lbIndex].src;
+    lbImg.alt             = currentSet[lbIndex].caption;
+    lbCaption.textContent = currentSet[lbIndex].caption;
   }
 
   function closeLb() {
@@ -93,13 +117,13 @@
     var current = 0;
     var timer;
 
-    // Build HTML
     var html = '<div class="ss-track">';
     GALLERY_IMAGES.forEach(function (img, i) {
       html +=
         '<div class="ss-slide' + (i === 0 ? ' ss-active' : '') +
         '" data-index="' + i + '">' +
-        '<img src="' + img.src + '" alt="' + img.caption + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">' +
+        '<img src="' + img.src + '" alt="' + img.caption +
+        '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">' +
         '<div class="ss-caption">' + img.caption + '</div>' +
         '</div>';
     });
@@ -145,7 +169,7 @@
     });
     slides.forEach(function (slide) {
       slide.addEventListener('click', function () {
-        showLb(parseInt(this.getAttribute('data-index'), 10));
+        openLb(GALLERY_IMAGES, parseInt(this.getAttribute('data-index'), 10));
       });
     });
 
@@ -166,7 +190,27 @@
     container.innerHTML = html;
     container.querySelectorAll('.gal-item').forEach(function (item) {
       item.addEventListener('click', function () {
-        showLb(parseInt(this.getAttribute('data-index'), 10));
+        openLb(GALLERY_IMAGES, parseInt(this.getAttribute('data-index'), 10));
+      });
+    });
+  }
+
+  /* ── Inline page images (.lb-image) ───────────────────────── */
+  function initPageImages() {
+    var pageImgs = Array.prototype.slice.call(
+      document.querySelectorAll('img.lb-image')
+    );
+    if (!pageImgs.length) return;
+
+    // Build an image set from the page's .lb-image elements.
+    // img.src returns the absolute URL, which is fine for the overlay.
+    var imgSet = pageImgs.map(function (img) {
+      return { src: img.src, caption: img.alt };
+    });
+
+    pageImgs.forEach(function (img, i) {
+      img.addEventListener('click', function () {
+        openLb(imgSet, i);
       });
     });
   }
@@ -178,5 +222,6 @@
     var gal = document.getElementById('gallery-grid');
     if (ss)  buildSlideshow(ss);
     if (gal) buildGallery(gal);
+    initPageImages();
   });
 })();
