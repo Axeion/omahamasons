@@ -201,7 +201,7 @@ img {
 /* --- Hero Section --- */
 .hero {
     background:
-        linear-gradient(rgba(5, 10, 16, 0.7), rgba(7, 15, 23, 0.8)),
+        linear-gradient(rgba(5, 10, 16, 0.05), rgba(7, 15, 23, 0.05)),
         url("../images/Lighthouse_with background.png") center/100% auto no-repeat;
     color: #fff;
     text-align: center;
