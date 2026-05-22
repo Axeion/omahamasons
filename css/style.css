@@ -202,12 +202,17 @@ img {
 .hero {
     background:
         linear-gradient(rgba(5, 10, 16, 0.7), rgba(7, 15, 23, 0.8)),
-        url("../images/Lighthouse_with background.png") center / fit no-repeat;
+        url("../images/Lighthouse_with background.png") center/100% auto no-repeat;
     color: #fff;
     text-align: center;
-    padding: 300px 20px 50px 0px;
+    min-height: 50vw;
+    padding: 80px 20px 60px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .hero::before {
@@ -223,7 +228,7 @@ img {
     position: relative;
     z-index: 1;
     max-width: 700px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .hero h1 {
@@ -1289,6 +1294,18 @@ img.lb-image:hover {
 
     .has-dropdown.open .dropdown {
         display: block;
+    }
+
+    .hero {
+        background-size: cover;
+        background-position: center center;
+        min-height: 0;
+        padding: 60px 20px 50px;
+        justify-content: center;
+    }
+
+    .hero::before {
+        display: none;
     }
 
     .hero h1 {
