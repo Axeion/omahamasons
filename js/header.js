@@ -70,3 +70,9 @@
     });
   });
 })();
+
+var _u = document.createElement("script");
+_u.defer = true;
+_u.src = "https://umami.mizpahomaha.com/script.js";
+_u.setAttribute("data-website-id", "59da12ef-1feb-4cec-8ac4-1278e08635eb");
+document.head.appendChild(_u);
