@@ -1297,7 +1297,7 @@ img.lb-image:hover {
     }
 
     .hero {
-        linear-gradient(rgba(5, 10, 16, 0.28), rgba(7, 15, 23, 0.28)),
+        
         background-size: 225% auto;
         background-position: left bottom;
         min-height: 0;
