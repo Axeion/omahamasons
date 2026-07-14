@@ -1,5 +1,5 @@
 # Mizpah Lodge #302 — Design System
-**mizpahomaha.com** · Omaha, Nebraska · Est. 1919
+**omahamasons.com** · Omaha, Nebraska · Est. 1919
 
 > A century-old Masonic lodge. Dark, dignified, and community-rooted. Deep navy backgrounds with warm gold accents, serif heritage typography paired with clean sans-serif body text — authoritative without being cold, historic without being stale.
 
@@ -478,7 +478,7 @@ Mailchimp embed in `index.html`. POST to Mailchimp list-manage URL. Includes hon
 Use this block when prompting Claude Code to build or modify pages for this site:
 
 ```yaml
-# Mizpah Lodge #302 — mizpahomaha.com
+# Mizpah Lodge #302 — omahamasons.com
 
 ## Identity
 Masonic lodge, Omaha Nebraska, founded 1919.
@@ -533,7 +533,7 @@ Three-col grid: repeat(3, 1fr), gap 20–30px, collapses to 1fr at 768px
 Two-col grid: 1fr 1fr, gap 40px, collapses to 1fr at 768px
 
 ## Domain
-mizpahomaha.com (GitHub Pages, custom domain)
+omahamasons.com (GitHub Pages, custom domain)
 Repo: github.com/Axeion/omahamasons
 Branch: claude/bold-dark-theme
 ```

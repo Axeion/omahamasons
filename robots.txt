@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mizpahomaha.com/sitemap.xml
+Sitemap: https://omahamasons.com/sitemap.xml
