@@ -17,6 +17,7 @@
 <link rel="icon" type="image/png" href="images/Mizpah-Seal_Brown-1-350x350.png">
 <link rel="apple-touch-icon" href="images/Mizpah-Seal_Brown-1-350x350.png">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/next-meeting.js" defer></script>
 <style>
   /* ── Page-specific styles ── */
   .rsvp-grid {
@@ -31,8 +32,8 @@
 
   /* Event info card */
   .event-info-card {
-    background: var(--card-bg, #1a1a2e);
-    border: 1px solid var(--gold, #c9a84c);
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
     border-radius: 8px;
     padding: 32px;
     position: sticky;
@@ -40,7 +41,7 @@
   }
   .event-info-card h2 {
     font-family: 'Alegreya', serif;
-    color: var(--gold, #c9a84c);
+    color: var(--accent);
     font-size: 1.5rem;
     margin-bottom: 20px;
     padding-bottom: 12px;
@@ -59,7 +60,7 @@
   }
   .event-detail-text strong {
     display: block;
-    color: var(--gold, #c9a84c);
+    color: var(--accent);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -67,7 +68,7 @@
   }
   .event-detail-text span {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.7);
+    color: var(--text-light);
   }
 
   /* Payment section */
@@ -78,13 +79,13 @@
   }
   .payment-note h3 {
     font-family: 'Alegreya', serif;
-    color: var(--gold, #c9a84c);
+    color: var(--accent);
     font-size: 1.1rem;
     margin-bottom: 12px;
   }
   .payment-note p {
     font-size: 0.9rem;
-    color: var(--text-light, #aaa);
+    color: var(--text-light);
     margin-bottom: 14px;
   }
   .pay-buttons {
@@ -126,14 +127,14 @@
 
   /* RSVP Form card */
   .rsvp-form-card {
-    background: var(--card-bg, #1a1a2e);
+    background: var(--bg-card);
     border: 1px solid rgba(201,168,76,0.35);
     border-radius: 8px;
     padding: 32px;
   }
   .rsvp-form-card h2 {
     font-family: 'Alegreya', serif;
-    color: var(--gold, #c9a84c);
+    color: var(--accent);
     font-size: 1.5rem;
     margin-bottom: 24px;
     padding-bottom: 12px;
@@ -157,7 +158,7 @@
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--gold, #c9a84c);
+    color: var(--accent);
     margin-bottom: 6px;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
@@ -170,7 +171,7 @@
     border: 1px solid rgba(201,168,76,0.35);
     border-radius: 5px;
     padding: 11px 14px;
-    color: #e8e8e8;
+    color: var(--text);
     font-family: 'Roboto', sans-serif;
     font-size: 0.95rem;
     transition: border-color 0.2s, background 0.2s;
@@ -180,12 +181,12 @@
   .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: var(--gold, #c9a84c);
+    border-color: var(--accent);
     background: rgba(255,255,255,0.09);
   }
   .form-group select option {
-    background: #1a1a2e;
-    color: #e8e8e8;
+    background: var(--bg-card);
+    color: var(--text);
   }
   .form-group textarea {
     resize: vertical;
@@ -205,7 +206,7 @@
   .stepper button {
     background: rgba(201,168,76,0.15);
     border: none;
-    color: var(--gold, #c9a84c);
+    color: var(--accent);
     font-size: 1.2rem;
     width: 40px;
     height: 42px;
@@ -220,7 +221,7 @@
     width: 52px !important;
     text-align: center;
     background: transparent !important;
-    color: #e8e8e8;
+    color: var(--text);
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
     padding: 11px 4px !important;
@@ -231,7 +232,7 @@
   .btn-submit {
     width: 100%;
     padding: 14px;
-    background: var(--gold, #c9a84c);
+    background: var(--accent);
     color: #111;
     border: none;
     border-radius: 6px;
@@ -244,7 +245,7 @@
     margin-top: 6px;
   }
   .btn-submit:hover {
-    background: #e0b956;
+    background: var(--accent-light);
     transform: translateY(-1px);
   }
   .btn-submit:disabled {
@@ -273,29 +274,17 @@
     color: #fc8181;
   }
 
-  /* Setup instructions panel */
-  .setup-banner {
-    background: rgba(201,168,76,0.08);
-    border: 1px dashed rgba(201,168,76,0.5);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 32px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.88rem;
-    color: var(--text-light, #aaa);
-    line-height: 1.6;
+  /* Light theme: status text darkened for contrast on white cards */
+  @media (prefers-color-scheme: light) {
+    .form-status.success { color: #276749; }
+    .form-status.error   { color: #c53030; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea { background: #fff; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { background: #fff; }
   }
-  .setup-banner strong { color: var(--gold, #c9a84c); }
-  .setup-banner code {
-    background: rgba(0,0,0,0.3);
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: monospace;
-    color: #e8e8e8;
-    font-size: 0.85rem;
-  }
-  .setup-banner ol { margin: 10px 0 0 18px; }
-  .setup-banner li { margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -325,6 +314,8 @@
               <span>First Wednesday of each month at 7:00 PM</span>
             </div>
           </div>
+
+          <div id="next-meeting" data-rsvp-button="false"></div>
 
           <div class="event-detail">
             <span class="event-detail-icon">📍</span>
@@ -411,7 +402,7 @@
           </div>
 
           <div class="form-group">
-            <label for="dietaryNotes">Dietary Notes or Questions <span style="font-size:0.75rem;color:var(--text-light,#aaa);font-weight:300;">(optional)</span></label>
+            <label for="dietaryNotes">Dietary Notes or Questions <span style="font-size:0.75rem;color:var(--text-light);font-weight:300;">(optional)</span></label>
             <textarea id="dietaryNotes" name="dietaryNotes" placeholder="Allergies, dietary restrictions, or anything we should know..."></textarea>
           </div>
 
@@ -540,6 +531,7 @@ async function submitRSVP() {
   const payload = {
     firstName, lastName, email, phone,
     role, guestCount, dietary,
+    website: document.getElementById('website').value, // honeypot, checked server-side too
     timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })
   };
 

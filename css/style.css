@@ -459,6 +459,57 @@ img {
     margin: 0;
 }
 
+/* --- Next Meeting Banner (js/next-meeting.js) --- */
+.next-meeting {
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin-top: 15px;
+}
+
+.next-meeting .nm-line {
+    color: var(--text);
+    margin: 0 0 4px;
+}
+
+.next-meeting .nm-line strong {
+    color: var(--accent);
+}
+
+.next-meeting .nm-countdown {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.next-meeting .nm-sub {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0 0 12px;
+}
+
+.next-meeting .nm-actions {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.next-meeting .nm-rsvp {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+}
+
+.next-meeting .nm-cal-link {
+    font-size: 0.85rem;
+    color: var(--primary-light);
+    white-space: nowrap;
+}
+
+.next-meeting .nm-cal-link:hover {
+    color: var(--accent-light);
+}
+
 .wm-card {
     background: var(--bg-card);
     border-radius: 4px;
@@ -1343,5 +1394,82 @@ img.lb-image:hover {
 
     .grid-2 {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Light theme — applied when the visitor's
+   system prefers light colors. The site's
+   default dark palette lives in :root above.
+   The header, footer, page-header banners, and
+   the Appendent Bodies section intentionally
+   stay dark in both themes.
+   ============================================ */
+@media (prefers-color-scheme: light) {
+    :root {
+        --primary: #1f7ab8;
+        --primary-dark: #16608f;
+        --primary-extradark: #10496e;
+        --primary-light: #16608f; /* link color, darkened for contrast */
+        --accent: #a87824;
+        --accent-dark: #8a6420;
+        --accent-light: #c8972e;
+        --text: #22313f;
+        --text-light: #5a6f80;
+        --bg: #f7f9fb;
+        --bg-alt: #edf1f5;
+        --bg-card: #ffffff;
+        /* --bg-dark and --bg-footer keep their dark values */
+        --border: rgba(13, 27, 38, 0.14);
+        --shadow: 0 4px 20px rgba(13, 27, 38, 0.12);
+    }
+
+    /* Header stays dark — keep nav text light */
+    .main-nav a {
+        color: #dce8f2;
+    }
+
+    .dropdown {
+        background: var(--bg-dark);
+    }
+
+    /* Appendent Bodies section stays dark */
+    .section-dark,
+    .section-dark h2,
+    .section-dark h3 {
+        color: #dce8f2;
+    }
+
+    .section-dark .section-header p {
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* Panels that used the dark background */
+    blockquote,
+    .img-placeholder {
+        background: var(--bg-alt);
+    }
+
+    /* Pillar icons: white → dark so they show on white cards */
+    .pillar-icon img {
+        filter: brightness(0) opacity(0.8);
+    }
+
+    /* Form fields on light cards */
+    .form-group input,
+    .form-group textarea,
+    .form-group select,
+    .newsletter-form input {
+        background: #ffffff;
+    }
+
+    .dues-table tr:hover td {
+        background: rgba(13, 27, 38, 0.04);
+    }
+
+    /* Gold gradient card: white text reads better on darker gold */
+    .club-highlight,
+    .club-highlight h3 {
+        color: #ffffff;
     }
 }
