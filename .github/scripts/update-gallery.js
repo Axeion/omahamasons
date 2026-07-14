@@ -72,23 +72,31 @@ fs.writeFileSync(MANIFEST_PATH, JSON.stringify(updated, null, 2) + '\n');
 console.log(`\nWrote ${MANIFEST_PATH} (${updated.length} image${updated.length !== 1 ? 's' : ''})`);
 
 // ── Rewrite GALLERY_IMAGES block in lightbox.js ────────────────────────────
+// Escape backslashes and single quotes so a filename or caption containing
+// an apostrophe can't break (or inject into) the generated JavaScript.
+const escJs = s => String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+
 const arrayBody = updated
   .map(({ src, caption }) =>
-    `    {\n      src: '${src}',\n      caption: '${caption}',\n    }`)
+    `    {\n      src: '${escJs(src)}',\n      caption: '${escJs(caption)}',\n    }`)
   .join(',\n');
 
 const replacement = `var GALLERY_IMAGES = [\n${arrayBody},\n  ];`;
 
-let js = fs.readFileSync(LIGHTBOX_JS, 'utf8');
-const updated_js = js.replace(
-  /var GALLERY_IMAGES\s*=\s*\[[\s\S]*?\];/,
-  replacement
-);
+const GALLERY_RE = /var GALLERY_IMAGES\s*=\s*\[[\s\S]*?\];/;
 
-if (updated_js === js) {
+let js = fs.readFileSync(LIGHTBOX_JS, 'utf8');
+
+if (!GALLERY_RE.test(js)) {
   console.error('\nERROR: GALLERY_IMAGES array not found in lightbox.js — aborting.');
   process.exit(1);
 }
 
-fs.writeFileSync(LIGHTBOX_JS, updated_js);
-console.log(`Updated GALLERY_IMAGES in ${LIGHTBOX_JS}`);
+const updated_js = js.replace(GALLERY_RE, replacement);
+
+if (updated_js === js) {
+  console.log(`GALLERY_IMAGES in ${LIGHTBOX_JS} already up to date.`);
+} else {
+  fs.writeFileSync(LIGHTBOX_JS, updated_js);
+  console.log(`Updated GALLERY_IMAGES in ${LIGHTBOX_JS}`);
+}

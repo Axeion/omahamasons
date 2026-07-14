@@ -26,9 +26,14 @@
     <changefreq>yearly</changefreq>
   </url>
   <url>
-    <loc>https://omahamasons.com/scholarships.html</loc>
+    <loc>https://omahamasons.com/membership.html</loc>
     <priority>0.7</priority>
     <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://omahamasons.com/gallery.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://omahamasons.com/dues.html</loc>
