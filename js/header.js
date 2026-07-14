@@ -69,6 +69,13 @@
       }
     });
   });
+
+  // Keep the footer copyright year current
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".copyright-year").forEach(function (el) {
+      el.textContent = new Date().getFullYear();
+    });
+  });
 })();
 
 var _u = document.createElement("script");

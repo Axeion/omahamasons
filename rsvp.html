@@ -14,6 +14,8 @@
 <meta property="og:image" content="https://omahamasons.com/images/header_miz.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/Mizpah-Seal_Brown-1-350x350.png">
+<link rel="apple-touch-icon" href="images/Mizpah-Seal_Brown-1-350x350.png">
 <link rel="stylesheet" href="css/style.css">
 <style>
   /* ── Page-specific styles ── */
@@ -413,6 +415,12 @@
             <textarea id="dietaryNotes" name="dietaryNotes" placeholder="Allergies, dietary restrictions, or anything we should know..."></textarea>
           </div>
 
+          <!-- Honeypot — hidden from humans; bots that fill it are ignored -->
+          <div aria-hidden="true" style="position:absolute; left:-5000px;">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <button type="button" class="btn-submit" id="submitBtn" onclick="submitRSVP()">
             Confirm My RSVP
           </button>
@@ -424,7 +432,7 @@
           </div>
           <div class="form-status error" id="errorMsg">
             Something went wrong submitting your RSVP. Please try again or email
-            <a href="/cdn-cgi/l/email-protection#561b3f2c26373e65666425333516313b373f3a7835393b" style="color:#fc8181;"><span class="__cf_email__" data-cfemail="226f4b5852434a11121051474162454f434b4e0c414d4f">[email&#160;protected]</span></a>.
+            <a href="mailto:Mizpah302sec@gmail.com" style="color:#fc8181;">Mizpah302sec@gmail.com</a>.
           </div>
         </div>
       </div>
@@ -448,6 +456,7 @@
       <div class="footer-section">
         <h4>Quick Links</h4>
         <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
         <a href="calendar.html">Calendar</a>
         <a href="dues.html">Lodge Dues</a>
         <a href="contact.html">Contact Us</a>
@@ -457,16 +466,16 @@
         <p>1124 South 48th Street<br>Omaha, Nebraska</p>
         <p style="margin-top:8px;">PO Box 6362<br>Omaha, NE 68106-0362</p>
         <p style="margin-top:8px;">(402) 558-0666</p>
-        <a href="/cdn-cgi/l/email-protection#014c687b71606932313372646241666c60686d2f626e6c"><span class="__cf_email__" data-cfemail="15587c6f65747d262527667076557278747c793b767a78">[email&#160;protected]</span></a>
+        <a href="mailto:Mizpah302sec@gmail.com">Mizpah302sec@gmail.com</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 Mizpah Lodge #302 A.F. &amp; A.M. All rights reserved.</p>
+      <p>&copy; <span class="copyright-year">2026</span> Mizpah Lodge #302 A.F. &amp; A.M. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw_lm6eQuK4Z_xS0taz3RsYfH1wo52VC96yjlknHH2MTeOB9P7SPpxF32ti2ZGHRzyiQ/exec';
 
 function adjustCount(delta) {
@@ -495,6 +504,13 @@ async function submitRSVP() {
   // Clear previous status
   successMsg.style.display = 'none';
   errorMsg.style.display = 'none';
+
+  // Honeypot: silently drop bot submissions that filled the hidden field
+  if (document.getElementById('website').value) {
+    successMsg.style.display = 'block';
+    btn.textContent = 'RSVP Confirmed ✓';
+    return;
+  }
 
   // Gather values
   const firstName  = document.getElementById('firstName').value.trim();

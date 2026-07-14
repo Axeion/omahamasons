@@ -14,6 +14,8 @@
   <meta property="og:image" content="https://omahamasons.com/images/header_miz.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/Mizpah-Seal_Brown-1-350x350.png">
+  <link rel="apple-touch-icon" href="images/Mizpah-Seal_Brown-1-350x350.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -31,89 +33,26 @@
       <div class="newsletter" style="margin-bottom:30px;">
         <h3>Subscribe to the Trestle Board</h3>
         <p>Receive our monthly newsletter and other updates from the lodge directly in your inbox.</p>
-        <form class="newsletter-form" action="#" onsubmit="alert('To subscribe, please email Mizpah302sec@gmail.com with your name.'); return false;">
-          <input type="email" placeholder="Your email address" required>
-          <button type="submit" class="btn btn-accent">Subscribe</button>
+        <form class="newsletter-form" action="https://omahamasons.us20.list-manage.com/subscribe/post?u=60d3b40cfe7d3514e0cc9e4ee&amp;id=fd431a9ac5&amp;f_id=004576eef0" method="post" target="_blank">
+          <input type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email">
+          <button type="submit" name="subscribe" class="btn btn-accent">Subscribe</button>
+          <!-- Mailchimp honeypot — do not remove -->
+          <div aria-hidden="true" style="position: absolute; left: -5000px">
+            <input type="text" name="b_60d3b40cfe7d3514e0cc9e4ee_fd431a9ac5" tabindex="-1" value="">
+          </div>
         </form>
       </div>
 
       <div class="info-card">
         <h3>About the Trestle Board</h3>
         <p>The Trestle Board is the monthly newsletter of Mizpah Lodge #302. It contains the Worshipful Master's message, upcoming events, lodge business summaries, and other announcements important to the brethren.</p>
-        <p style="margin-top:10px;">Past editions are archived below for reference. Each issue is available as a downloadable PDF.</p>
+        <p style="margin-top:10px;">The easiest way to receive the Trestle Board is by email — subscribe above and each issue will arrive in your inbox.</p>
       </div>
 
-      <div style="margin-top:30px;">
-        <h2 style="margin-bottom:20px;">Newsletter Archives</h2>
-
-        <h3 style="margin-bottom:15px; color: var(--accent-dark);">2020</h3>
-        <div class="archive-grid" style="margin-bottom:30px;">
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>February 2020</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>January 2020</span>
-          </a>
-        </div>
-
-        <h3 style="margin-bottom:15px; color: var(--accent-dark);">2019</h3>
-        <div class="archive-grid">
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>December 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>November 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>October 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>September 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>August 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>July 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>June 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>May 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>April 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>March 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>February 2019</span>
-          </a>
-          <a href="#" class="archive-item">
-            <span class="file-icon">&#128196;</span>
-            <span>January 2019</span>
-          </a>
-        </div>
+      <div class="info-card" style="margin-top:30px;">
+        <h3>Newsletter Archives</h3>
+        <p>Past editions of the Trestle Board are being digitized and will be posted here as they become available. In the meantime, subscribe above to receive each new issue by email, or contact the secretary at <a href="mailto:Mizpah302sec@gmail.com">Mizpah302sec@gmail.com</a> to request a past issue.</p>
       </div>
-
-      <p style="margin-top:20px; color: var(--text-light); font-size:0.9rem;">
-        <em>Note: To add PDF links, place your Trestle Board PDF files in a <code>documents/</code> folder and update the <code>href</code> attributes above.</em>
-      </p>
 
     </div>
   </section>
@@ -146,7 +85,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> Mizpah Lodge #302 A.F. &amp; A.M. All rights reserved.</p>
+        <p>&copy; <span class="copyright-year">2026</span> Mizpah Lodge #302 A.F. &amp; A.M. All rights reserved.</p>
       </div>
     </div>
   </footer>

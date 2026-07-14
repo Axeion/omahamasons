@@ -202,7 +202,7 @@ img {
 .hero {
     background:
         linear-gradient(rgba(5, 10, 16, 0.05), rgba(7, 15, 23, 0.05)),
-        url("../images/Lighthouse_with background.png") center/100% auto no-repeat;
+        url("../images/lighthouse_with_background.png") center/100% auto no-repeat;
     color: #fff;
     text-align: center;
     min-height: 50vw;
@@ -1299,7 +1299,7 @@ img.lb-image:hover {
     .hero {
         background:
             linear-gradient(rgba(5, 10, 16, 0.6), rgba(7, 15, 23, 0.7)),
-            url("../images/Lighthouse_with background.png") left bottom/225% auto no-repeat;
+            url("../images/lighthouse_with_background.png") left bottom/225% auto no-repeat;
         min-height: 0;
         padding: 60px 20px 50px;
         justify-content: center;

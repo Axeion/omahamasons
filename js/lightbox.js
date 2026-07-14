@@ -52,9 +52,20 @@
     },
     {
       src: 'images/lightbox/patrick&ericcoin.jpg',
-      caption: 'Grand Custodian Eric presents W.B. Patrick with his MM proficency coin.',
+      caption: 'Grand Custodian Eric presents W.B. Patrick with his MM proficiency coin.',
     },
   ];
+
+  /* ── Helpers ───────────────────────────────────────────────── */
+  // Escape caption text before it is concatenated into HTML strings
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   /* ── Shared lightbox state ─────────────────────────────────── */
   var currentSet = [];
@@ -140,9 +151,9 @@
       html +=
         '<div class="ss-slide' + (i === 0 ? ' ss-active' : '') +
         '" data-index="' + i + '">' +
-        '<img src="' + img.src + '" alt="' + img.caption +
+        '<img src="' + encodeURI(img.src) + '" alt="' + escHtml(img.caption) +
         '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">' +
-        '<div class="ss-caption">' + img.caption + '</div>' +
+        '<div class="ss-caption">' + escHtml(img.caption) + '</div>' +
         '</div>';
     });
     html += '</div>';
@@ -200,9 +211,9 @@
     GALLERY_IMAGES.forEach(function (img, i) {
       html +=
         '<button class="gal-item" data-index="' + i + '" ' +
-        'style="background-image:url(\'' + img.src + '\')" ' +
-        'aria-label="View: ' + img.caption + '">' +
-        '<span class="gal-caption">' + img.caption + '</span>' +
+        'style="background-image:url(\'' + encodeURI(img.src) + '\')" ' +
+        'aria-label="View: ' + escHtml(img.caption) + '">' +
+        '<span class="gal-caption">' + escHtml(img.caption) + '</span>' +
         '</button>';
     });
     container.innerHTML = html;
