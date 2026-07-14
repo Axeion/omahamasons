@@ -467,7 +467,7 @@
 </footer>
 
 <script>
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw_lm6eQuK4Z_xS0taz3RsYfH1wo52VC96yjlknHH2MTeOB9P7SPpxF32ti2ZGHRzyiQ/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3CzO4EMZmH3vJufArIH_hau-yLJ405NfKGmP6l_dDb2U6FVrvhDEbJHMk-Wj6oGPCOg/exec';
 
 function adjustCount(delta) {
   const input = document.getElementById('guestCount');
@@ -536,13 +536,15 @@ async function submitRSVP() {
   };
 
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',   // required for Apps Script
-      headers: { 'Content-Type': 'application/json' },
+      // text/plain avoids a CORS preflight, which Apps Script cannot answer;
+      // the script parses the JSON body regardless of content type
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
-    // no-cors means we can't read the response — assume success if no throw
+    const result = await res.json();
+    if (!result.ok) throw new Error(result.error || 'Submission failed');
     successMsg.style.display = 'block';
     btn.textContent = 'RSVP Confirmed ✓';
     // Scroll to success message on mobile
