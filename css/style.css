@@ -1,3 +1,6 @@
+/* Hallmark · design-system: DESIGN.md · genre: heritage-editorial
+ * theme: lodge dark navy/gold (light variant via prefers-color-scheme) */
+
 /* ============================================
    Mizpah Lodge #302 - Bold Dark Theme
    ============================================ */
@@ -28,6 +31,13 @@
     --bg-footer: #040a10;
     --border: rgba(255, 255, 255, 0.1);
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+    /* z-index scale — keep layers named, never arbitrary */
+    --z-slide-controls: 2;
+    --z-dropdown: 100;
+    --z-header: 1000;
+    --z-lightbox: 1100;
+    --z-lightbox-close: 1101;
 }
 
 html {
@@ -82,7 +92,7 @@ img {
     border-bottom: 3px solid var(--accent);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: var(--z-header);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
 }
 
@@ -170,7 +180,7 @@ img {
     box-shadow: var(--shadow);
     min-width: 200px;
     border-top: 2px solid var(--accent);
-    z-index: 100;
+    z-index: var(--z-dropdown);
 }
 
 .dropdown a {
@@ -286,7 +296,10 @@ img {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.9rem;
-    transition: all 0.2s;
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        border-color 0.2s;
     cursor: pointer;
     border: none;
 }
@@ -325,6 +338,15 @@ img {
 /* --- Sections --- */
 .section {
     padding: 70px 0;
+}
+
+/* Rhythm modifiers — vary section breathing room, don't pad uniformly */
+.section-tight {
+    padding: 45px 0;
+}
+
+.section-roomy {
+    padding: 95px 0;
 }
 
 .section-alt {
@@ -822,7 +844,10 @@ blockquote cite {
     color: rgba(255, 255, 255, 0.75);
     text-align: center;
     font-weight: bold;
-    transition: all 0.2s;
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        border-color 0.2s;
     font-size: 0.9rem;
 }
 
@@ -1132,7 +1157,7 @@ img.lb-image:hover {
     padding: 10px 14px;
     cursor: pointer;
     border-radius: 3px;
-    z-index: 2;
+    z-index: var(--z-slide-controls);
     transition: background 0.2s;
     line-height: 1;
 }
@@ -1178,7 +1203,7 @@ img.lb-image:hover {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.93);
-    z-index: 9999;
+    z-index: var(--z-lightbox);
     align-items: center;
     justify-content: center;
     gap: 16px;
@@ -1222,7 +1247,7 @@ img.lb-image:hover {
     cursor: pointer;
     line-height: 1;
     padding: 4px 10px;
-    z-index: 10000;
+    z-index: var(--z-lightbox-close);
     transition: color 0.2s;
 }
 
@@ -1265,15 +1290,12 @@ img.lb-image:hover {
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+    transition: transform 0.2s;
     padding: 0;
 }
 
 .gal-item:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 .gal-caption {

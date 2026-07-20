@@ -145,6 +145,9 @@
   function buildSlideshow(container) {
     var current = 0;
     var timer;
+    // WCAG 2.2.2: no auto-advance for reduced-motion users; pause for everyone
+    // else while the slideshow is hovered or holds keyboard focus
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     var html = '<div class="ss-track">';
     GALLERY_IMAGES.forEach(function (img, i) {
@@ -184,8 +187,18 @@
 
     function resetTimer() {
       clearInterval(timer);
+      if (reduceMotion) return;
       timer = setInterval(function () { goTo(current + 1); }, 15000);
     }
+
+    function pauseTimer() {
+      clearInterval(timer);
+    }
+
+    container.addEventListener('mouseenter', pauseTimer);
+    container.addEventListener('mouseleave', resetTimer);
+    container.addEventListener('focusin', pauseTimer);
+    container.addEventListener('focusout', resetTimer);
 
     container.querySelector('.ss-prev').addEventListener('click', function () {
       goTo(current - 1); resetTimer();

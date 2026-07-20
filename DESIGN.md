@@ -61,8 +61,19 @@ Mizpah Lodge embodies **Masonic tradition meets accessible community presence**.
   /* Utility */
   --border:        rgba(255,255,255,0.1);    /* Default subtle border */
   --shadow:        0 4px 20px rgba(0,0,0,0.5); /* Card/element shadow */
+
+  /* z-index scale — always use the named layer, never arbitrary values */
+  --z-slide-controls: 2;
+  --z-dropdown:       100;
+  --z-header:         1000;
+  --z-lightbox:       1100;
+  --z-lightbox-close: 1101;
 }
 ```
+
+**Translucent gold:** when a gold border/tint needs alpha, derive it from the
+system gold — `rgba(200,151,46,x)` (`#c8972e`). The legacy `rgba(201,168,76,x)`
+(`#c9a84c`) is retired; never reintroduce it.
 
 ### Color Roles Summary
 
@@ -85,6 +96,20 @@ Mizpah Lodge embodies **Masonic tradition meets accessible community presence**.
 Used only on payment CTAs. Not part of the lodge palette.
 - PayPal: `#003087`
 - Venmo: `#008CFF`
+
+### Light Theme (`prefers-color-scheme: light`)
+
+The dark palette above is the **default**. Visitors whose systems prefer light
+colors get a light variant via a `@media (prefers-color-scheme: light)` block at
+the end of `css/style.css` that re-assigns the custom properties (light
+backgrounds `#f7f9fb`/`#edf1f5`/`#ffffff`, dark text `#22313f`/`#5a6f80`,
+contrast-darkened gold `#a87824` and blue `#16608f`).
+
+Intentionally **dark in both themes**: the site header, footer, page-header
+banners, and the Appendent Bodies (`.section-dark`) section. Pillar icons flip
+from white to dark via a `filter` override so they stay visible on white cards.
+New components must reference tokens (never raw hex) so they inherit both
+themes automatically.
 
 ---
 
@@ -132,7 +157,7 @@ Alegreya is used exclusively for headings and display text — it carries the hi
 ```
 Background: --bg-dark (#070f17)
 Border-bottom: 3px solid --accent (gold)
-Logo: left-aligned image (images/header_miz.png), height 50px
+Logo: left-aligned image (images/header_miz.png), height 75px
 Nav links: Roboto 0.9rem 500, --text, uppercase, letter-spacing 0.5px
 Active/hover link: color --accent, background rgba(255,255,255,0.05)
 Donate button: solid gold fill (#c8972e), dark text, border-radius 3px
@@ -444,9 +469,11 @@ Active nav state is set dynamically by matching `window.location.pathname` — *
 
 All footers use:
 ```html
-<script>document.write(new Date().getFullYear())</script>
+&copy; <span class="copyright-year">2026</span>
 ```
-Never hardcode a year.
+`js/header.js` updates every `.copyright-year` span to the current year on
+`DOMContentLoaded` (`404.html`, which does not load `header.js`, carries its own
+inline updater). Never use `document.write` — it blocks parsing.
 
 ### Contact Form
 
@@ -535,7 +562,7 @@ Two-col grid: 1fr 1fr, gap 40px, collapses to 1fr at 768px
 ## Domain
 omahamasons.com (GitHub Pages, custom domain)
 Repo: github.com/Axeion/omahamasons
-Branch: claude/bold-dark-theme
+Branch: main
 ```
 
 ---
@@ -544,14 +571,18 @@ Branch: claude/bold-dark-theme
 
 | File | Nav Label | Purpose |
 |------|-----------|---------|
-| `index.html` | Home | Hero, pillars, WM message, what is Freemasonry, newsletter |
+| `index.html` | Home | Hero, pillars, WM message, what is Freemasonry, newsletter, next-meeting countdown |
 | `about.html` | About Us | Lodge history, MWB Futcher legacy, centennial, community partnerships |
+| `gallery.html` | Gallery | Photo gallery grid (lightbox), auto-synced from `images/lightbox/` by a GitHub Action |
 | `calendar.html` | Calendar | Google Calendar embed |
-| `scholarships.html` | Membership | Petition for initiation + scholarship applications |
+| `membership.html` | Membership | Petition for initiation + scholarship applications |
 | `dues.html` | Lodge Dues | Annual dues breakdown, payment methods, Club 1919 section |
 | `contact.html` | Contact Us | Contact form (Formspree AJAX) + lodge info + map |
-| `rsvp.html` | *(unlisted)* | Monthly business meeting dinner RSVP |
-| `trestle-board.html` | *(unlisted)* | Newsletter archive (not linked from nav) |
-| `shop.html` | *(unlisted)* | Etsy storefront link |
+| `rsvp.html` | *(unlisted)* | Monthly business meeting dinner RSVP, next-meeting countdown |
+| `trestle-board.html` | *(unlisted)* | Newsletter archive + Mailchimp subscribe (not linked from nav) |
+| `shop.html` | *(unlisted)* | Merchandise inquiry (email CTA pending Etsy storefront) |
 | `club-1919.html` | *(unlisted)* | Legacy page — content moved to dues.html |
-| `js/header.js` | *(script)* | Shared nav — injected into all pages |
+| `404.html` | *(error page)* | Branded not-found page |
+| `js/header.js` | *(script)* | Shared nav — injected into all pages; also updates `.copyright-year` spans |
+| `js/lightbox.js` | *(script)* | Home slideshow + gallery grid + lightbox overlay |
+| `js/next-meeting.js` | *(script)* | Computes next stated meeting, renders countdown banner + calendar links + Event JSON-LD |
