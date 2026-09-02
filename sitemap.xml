@@ -40,19 +40,4 @@
     <priority>0.7</priority>
     <changefreq>yearly</changefreq>
   </url>
-  <url>
-    <loc>https://omahamasons.com/club-1919.html</loc>
-    <priority>0.6</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-  <url>
-    <loc>https://omahamasons.com/trestle-board.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://omahamasons.com/shop.html</loc>
-    <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
-  </url>
 </urlset>

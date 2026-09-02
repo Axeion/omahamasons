@@ -29,24 +29,9 @@ const T = {
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
-const RSVP = [
-  { name: "Dalton Kock",               fri: true,  sat: true,  shirt: "XL"       },
-  { name: "Patrick Smith",             fri: true,  sat: false, shirt: "XL"       },
-  { name: "Michael Duffy",             fri: true,  sat: true,  shirt: "2XL"      },
-  { name: "Skip Cruse",                fri: true,  sat: true,  shirt: "L"        },
-  { name: "Terry Winter",              fri: true,  sat: true,  shirt: "2XL"      },
-  { name: "Justin King",               fri: true,  sat: false, shirt: "XL"       },
-  { name: "Will Holderness-Siglin",    fri: true,  sat: true,  shirt: "2XL"      },
-  { name: "Camden Holderness-Siglin",  fri: true,  sat: true,  shirt: "XL"       },
-  { name: "Luke Miller",               fri: true,  sat: true,  shirt: "XL"       },
-  { name: "Jeremiah Jones",            fri: true,  sat: true,  shirt: "L"        },
-  { name: "Michael Bowsaw",            fri: true,  sat: true,  shirt: "XL"       },
-  { name: "Greg Carlson",              fri: true,  sat: true,  shirt: "XL (Tall)"},
-  { name: "Blake Ursch",               fri: false, sat: true,  shirt: "S"        },
-  { name: "Brandon Manchester",        fri: true,  sat: true,  shirt: "3XL"      },
-  { name: "Matt Whitlow",              fri: true,  sat: false, shirt: "XL"       },
-  { name: "Kyle Barcus",               fri: true,  sat: true,  shirt: "M"        },
-];
+// Headcount the quantities below were planned around (roster intentionally
+// not kept on this page — it is a reusable guide, not an attendance list).
+const HEADCOUNT = { total: 16, fri: 15, sat: 13 };
 
 const SHOPPING = [
   { category: "Meat & Protein", items: [
@@ -395,60 +380,12 @@ function MenuTab() {
   );
 }
 
-function RsvpTab() {
-  const friCount = RSVP.filter(r => r.fri).length;
-  const satCount = RSVP.filter(r => r.sat).length;
-  const shirtCounts = RSVP.reduce((acc, r) => { acc[r.shirt] = (acc[r.shirt] || 0) + 1; return acc; }, {});
-  const shirtOrder = ["S","M","L","XL","XL (Tall)","2XL","3XL"];
-
-  return (
-    <div>
-      <div style={{ display: "flex", gap: 8, padding: "12px 12px 0" }}>
-        {[["Total", RSVP.length], ["Friday", friCount], ["Saturday", satCount]].map(([label, val]) => (
-          <div key={label} style={{ flex: 1, background: T.card, border: `1px solid ${T.cardBorder}`, borderRadius: 8, padding: "12px 8px", textAlign: "center" }}>
-            <div style={{ fontSize: 26, fontWeight: "bold", color: T.accent, lineHeight: 1 }}>{val}</div>
-            <div style={{ fontSize: 11, color: T.muted, marginTop: 4, textTransform: "uppercase", letterSpacing: "0.1em" }}>{label}</div>
-          </div>
-        ))}
-      </div>
-
-      <Card headerText="Attendance" headerColor={T.accentDim}
-        badge={<span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>Fri · Sat · Shirt</span>}>
-        {RSVP.map((r, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", padding: "10px 14px",
-            borderBottom: `1px solid ${T.divider}`, background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
-            <span style={{ flex: 1, fontSize: 14, color: T.text }}>{r.name}</span>
-            {[r.fri, r.sat].map((on, j) => (
-              <div key={j} style={{ width: 10, height: 10, borderRadius: "50%", marginLeft: 8,
-                background: on ? T.green : T.cardBorder, flexShrink: 0 }} />
-            ))}
-            <span style={{ fontSize: 12, color: T.accent, fontWeight: "bold", marginLeft: 10, minWidth: 36, textAlign: "right" }}>{r.shirt}</span>
-          </div>
-        ))}
-      </Card>
-
-      <Card headerText="Shirt Size Summary" headerColor="#3a4a6a">
-        {shirtOrder.filter(s => shirtCounts[s]).map((size, i) => (
-          <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center",
-            padding: "10px 14px", borderBottom: `1px solid ${T.divider}`,
-            background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
-            <span style={{ fontSize: 14, color: T.text }}>{size}</span>
-            <span style={{ fontSize: 20, fontWeight: "bold", color: T.accent }}>{shirtCounts[size]}</span>
-          </div>
-        ))}
-      </Card>
-      <div style={{ height: 20 }} />
-    </div>
-  );
-}
-
 // ── App shell ─────────────────────────────────────────────────────────────────
 
 const TABS = [
   { id: "shopping", label: "Shopping" },
   { id: "gear",     label: "Gear Pack" },
   { id: "menu",     label: "Menu" },
-  { id: "rsvp",     label: "RSVP" },
 ];
 
 function App() {
@@ -460,6 +397,7 @@ function App() {
       <div style={{ background: "linear-gradient(180deg,#1c1410 0%,#0f0d0a 100%)", borderBottom: `1px solid ${T.cardBorder}`, padding: "18px 16px 14px", textAlign: "center" }}>
         <div style={{ fontSize: 20, fontWeight: "bold", color: T.accent, letterSpacing: "0.04em" }}>Mizpah Lodge #302</div>
         <div style={{ fontSize: 12, color: T.muted, marginTop: 3, fontStyle: "italic" }}>Camp Cook — Dalton Kock</div>
+        <div style={{ fontSize: 11, color: T.muted, marginTop: 6 }}>Planned for {HEADCOUNT.total} campers · Fri {HEADCOUNT.fri} · Sat {HEADCOUNT.sat}</div>
       </div>
 
       {/* Tab bar */}
@@ -480,7 +418,6 @@ function App() {
         {tab === "shopping" && <ShoppingTab />}
         {tab === "gear"     && <GearTab />}
         {tab === "menu"     && <MenuTab />}
-        {tab === "rsvp"     && <RsvpTab />}
       </div>
     </div>
   );
