@@ -15,10 +15,10 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo">
-        <img src="images/header_miz.png" alt="Mizpah Lodge #302 A.F. &amp; A.M." class="logo-img">
+        <img src="images/header_miz.png" alt="Mizpah Lodge #302 A.F. &amp; A.M." class="logo-img" width="228" height="75">
       </a>
 
-      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="mainNav" aria-expanded="false" onclick="toggleNav()">
         <span></span><span></span><span></span>
       </button>
 
@@ -57,7 +57,9 @@
 
   // Mobile hamburger toggle
   window.toggleNav = function () {
-    document.getElementById("mainNav").classList.toggle("open");
+    var open = document.getElementById("mainNav").classList.toggle("open");
+    var toggle = document.querySelector(".nav-toggle");
+    if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
   };
 
   // Mobile dropdown toggle — prevent navigation on small screens, toggle instead

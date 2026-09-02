@@ -13,7 +13,7 @@
 var CONFIG = {
   // Spreadsheet that collects RSVPs. Leave SHEET_ID empty ('') if this
   // script is bound to the spreadsheet (created via Extensions > Apps Script).
-  SHEET_ID: 'PASTE_SPREADSHEET_ID_HERE',
+  SHEET_ID: '', // e.g. '1AbC...xyz' — only needed for a standalone (unbound) script
   SHEET_NAME: 'RSVPs',
 
   // Confirmation email to the person who RSVP'd

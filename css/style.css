@@ -184,18 +184,21 @@ img {
 }
 
 /* Donate button */
-.btn-donate {
+/* Selectors include .main-nav a so they out-rank the generic nav
+   link rules (color, hover background) instead of being overridden. */
+.main-nav a.btn-donate {
     background: var(--accent);
-    color: var(--accent);
+    color: #0d1b26;
     border-radius: 3px;
-    padding: 10px 18px !important;
+    padding: 10px 18px;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
 
-.btn-donate:hover {
+.main-nav a.btn-donate:hover,
+.main-nav a.btn-donate.active {
     background: var(--accent-light);
-    color: var(--accent-light);
+    color: #0d1b26;
 }
 
 /* --- Hero Section --- */

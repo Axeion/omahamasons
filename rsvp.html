@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dinner RSVP - Mizpah Lodge #302</title>
-<meta name="description" content="RSVP for the Mizpah Lodge #302 monthly dinner. First Wednesday of each month at 7:00 PM, 1124 South 48th Street, Omaha, Nebraska. All Masons, families, and guests welcome.">
+<meta name="description" content="RSVP for the Mizpah Lodge #302 monthly dinner. First Wednesday of each month, dinner at 6:30 PM and stated meeting at 7:00 PM, 1124 South 48th Street, Omaha, Nebraska. All Masons, families, and guests welcome.">
 <link rel="canonical" href="https://omahamasons.com/rsvp.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mizpah Lodge #302">
 <meta property="og:title" content="Dinner RSVP | Mizpah Lodge #302">
-<meta property="og:description" content="RSVP for the Mizpah Lodge #302 monthly dinner. First Wednesday of each month at 7:00 PM, 1124 South 48th Street, Omaha, Nebraska.">
+<meta property="og:description" content="RSVP for the Mizpah Lodge #302 monthly dinner. First Wednesday of each month, dinner at 6:30 PM, 1124 South 48th Street, Omaha, Nebraska.">
 <meta property="og:url" content="https://omahamasons.com/rsvp.html">
 <meta property="og:image" content="https://omahamasons.com/images/header_miz.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -311,7 +311,7 @@
             <span class="event-detail-icon">📅</span>
             <div class="event-detail-text">
               <strong>When</strong>
-              <span>First Wednesday of each month at 7:00 PM</span>
+              <span>First Wednesday of each month &mdash; dinner at 6:30 PM, stated meeting at 7:00 PM</span>
             </div>
           </div>
 
@@ -361,6 +361,7 @@
         <div class="rsvp-form-card">
           <h2>&#9679; Reserve Your Seat</h2>
 
+          <form id="rsvp-form" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name *</label>
@@ -393,7 +394,7 @@
           </div>
 
           <div class="form-group">
-            <label>Number of Seats</label>
+            <label for="guestCount">Number of Seats</label>
             <div class="stepper">
               <button type="button" onclick="adjustCount(-1)" aria-label="Decrease">−</button>
               <input type="number" id="guestCount" name="guestCount" value="1" min="1" max="10" readonly>
@@ -412,9 +413,10 @@
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <button type="button" class="btn-submit" id="submitBtn" onclick="submitRSVP()">
+          <button type="submit" class="btn-submit" id="submitBtn">
             Confirm My RSVP
           </button>
+          </form>
 
           <div class="form-status success" id="successMsg">
             ✓ Thank you! Your RSVP has been recorded. We look forward to seeing you at the lodge.
@@ -487,14 +489,24 @@ document.getElementById('phone').addEventListener('blur', function() {
   formatPhone(this);
 });
 
+// Submit via the form so Enter works and the button is a real submit button
+document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  submitRSVP();
+});
+
+// Default error text; validation messages temporarily replace it
+const DEFAULT_ERROR_HTML = document.getElementById('errorMsg').innerHTML;
+
 async function submitRSVP() {
   const btn = document.getElementById('submitBtn');
   const successMsg = document.getElementById('successMsg');
   const errorMsg = document.getElementById('errorMsg');
 
-  // Clear previous status
+  // Clear previous status and restore the default error text
   successMsg.style.display = 'none';
   errorMsg.style.display = 'none';
+  errorMsg.innerHTML = DEFAULT_ERROR_HTML;
 
   // Honeypot: silently drop bot submissions that filled the hidden field
   if (document.getElementById('website').value) {
