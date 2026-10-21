@@ -1518,3 +1518,50 @@ img.lb-image:hover {
 .footer-legal a:hover {
     color: var(--accent);
 }
+
+/* --- Member greetings opt-in page (greetings-opt-in.html) --- */
+.consent-script {
+    border-left: 3px solid var(--accent);
+    padding: 10px 0 10px 18px;
+    margin: 12px 0;
+}
+
+/* Stage directions for the officer, distinct from the spoken (italic) script */
+.consent-script em {
+    font-style: normal;
+    font-weight: 600;
+}
+
+.consent-script p + p {
+    margin-top: 10px;
+}
+
+.consent-form .form-line {
+    border-bottom: 1px solid currentColor;
+    height: 44px;
+    margin: 6px 0 14px;
+    position: relative;
+    flex: 1;
+}
+
+.consent-form .form-line span {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 0.8rem;
+    opacity: 0.75;
+}
+
+.consent-form .form-row {
+    display: flex;
+    gap: 24px;
+}
+
+.consent-form .form-check {
+    margin-top: 24px;
+}
+
+.consent-form .form-small {
+    font-size: 0.85rem;
+    margin-top: 24px;
+}
