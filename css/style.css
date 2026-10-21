@@ -1476,3 +1476,45 @@ img.lb-image:hover {
         color: #ffffff;
     }
 }
+
+/* --- Legal pages (privacy.html, terms.html) & footer links --- */
+.legal-effective {
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.legal-content .info-card p + p {
+    margin-top: 10px;
+}
+
+.legal-content .info-card ul {
+    padding-left: 22px;
+    margin: 10px 0;
+}
+
+.legal-content .info-card li {
+    margin-bottom: 6px;
+}
+
+/* Keep linked sections (e.g. privacy.html#sms) clear of the sticky header */
+.legal-content [id] {
+    scroll-margin-top: 110px;
+}
+
+.legal-content code {
+    font-size: 0.9em;
+    color: var(--accent-light);
+}
+
+.footer-legal {
+    margin-top: 6px;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-legal a:hover {
+    color: var(--accent);
+}
