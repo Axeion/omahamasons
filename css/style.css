@@ -250,7 +250,37 @@ img {
     font-size: 1.15rem;
     color: #ddb84a;
     opacity: 1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+}
+
+.announcement-text .announcement-honoree {
+    font-family: "Alegreya", serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: #fff;
+    opacity: 0.9;
+    margin: -4px 0 6px;
+}
+
+.announcement-text .announcement-location {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.announcement-location a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(200, 151, 46, 0.6);
+    text-underline-offset: 3px;
+}
+
+.announcement-location a:hover {
+    color: #ddb84a;
+}
+
+.announcement-text p:last-child {
+    max-width: 640px;
 }
 
 .announcement-details .sep {
@@ -305,6 +335,11 @@ img {
 
     .announcement-title {
         font-size: 1.6rem;
+    }
+
+    .announcement-text p:last-child {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* Put the date on its own line above the times */
