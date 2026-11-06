@@ -245,6 +245,23 @@ img {
     opacity: 0.9;
 }
 
+.announcement-text .announcement-details {
+    font-family: "Alegreya", serif;
+    font-size: 1.15rem;
+    color: #ddb84a;
+    opacity: 1;
+    margin-bottom: 6px;
+}
+
+.announcement-details .sep {
+    margin: 0 6px;
+    opacity: 0.7;
+}
+
+.announcement-details .nowrap {
+    white-space: nowrap;
+}
+
 .announcement-actions {
     display: flex;
     align-items: center;
@@ -288,6 +305,15 @@ img {
 
     .announcement-title {
         font-size: 1.6rem;
+    }
+
+    /* Put the date on its own line above the times */
+    .announcement-details time {
+        display: block;
+    }
+
+    .announcement-details .sep-date {
+        display: none;
     }
 
     /* On a phone the visitor can tap the button; no need to scan */

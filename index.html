@@ -59,11 +59,18 @@
         <script src="js/header.js"></script>
 
         <!-- Announcement: Humanitarian Banquet -->
-        <aside class="announcement-banner" aria-label="Announcement">
+        <aside class="announcement-banner" aria-label="Announcement" data-expires="2026-12-13">
             <div class="announcement-inner">
                 <div class="announcement-text">
                     <span class="announcement-label">Upcoming Event</span>
                     <h2 class="announcement-title">Humanitarian Banquet</h2>
+                    <p class="announcement-details">
+                        <time datetime="2026-12-12">Saturday, December&nbsp;12</time>
+                        <span class="sep sep-date" aria-hidden="true">&middot;</span>
+                        <span class="nowrap">Cocktail hour 6&nbsp;p.m.</span>
+                        <span class="sep" aria-hidden="true">&middot;</span>
+                        <span class="nowrap">Dinner 7&nbsp;p.m.</span>
+                    </p>
                     <p>
                         Join Mizpah Lodge #302 for our Humanitarian Banquet.
                         Tickets are on sale now&nbsp;&mdash; reserve your seat today.
@@ -89,6 +96,12 @@
                 </div>
             </div>
         </aside>
+        <script>
+            // Hide the announcement automatically once its event has passed
+            document.querySelectorAll(".announcement-banner[data-expires]").forEach(function (el) {
+                if (new Date() >= new Date(el.dataset.expires + "T00:00:00")) el.remove();
+            });
+        </script>
 
         <!-- Hero -->
         <section class="hero">
